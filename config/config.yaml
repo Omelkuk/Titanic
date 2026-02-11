@@ -1,0 +1,92 @@
+data:
+  raw: D:/Titanic/data/raw/train.csv
+  seed: 42
+  test_size: 0.2
+preprocessing:
+  drop_cols:
+  - PassengerId
+  - Name
+  - Ticket
+  - Cabin
+  - SibSp
+  - Parch
+tuner:
+  target_metric: precision
+  n_trials: 25
+  study_name: titanic_optimization
+active_model: stacking
+models:
+  lgb:
+    type: lgb
+    n_estimators: 100
+    learning_rate: 0.0028369203721669563
+    num_leaves: 97
+    max_depth: 10
+    min_child_samples: 46
+    subsample: 0.785894475988038
+    verbose: -1
+  xgb:
+    type: xgb
+    n_estimators: 104
+    max_depth: 10
+    learning_rate: 0.1925608861533541
+    gamma: 0.0025249762353641973
+    subsample: 0.6067509378330139
+  rf:
+    type: rf
+    n_estimators: 797
+    max_depth: 6
+    min_samples_split: 14
+    criterion: gini
+    min_samples_leaf: 4
+    max_features: log2
+  lr:
+    type: lr
+    C: 1.0
+    solver: liblinear
+  stacking:
+    type: stacking
+    meta_C: 3.6700352553678957
+  nn:
+    type: nn
+    epochs: 1000
+    batch_size: 32
+    early_stopping:
+      patience: 15
+      min_delta: 0.0001
+    tuning:
+      n_layers:
+      - 1
+      - 5
+      hidden_dim:
+      - 16
+      - 128
+      dropout:
+      - 0.1
+      - 0.5
+      lr:
+      - 0.0001
+      - 0.01
+    best_params:
+      n_layers: 2
+      hidden_dim: 64
+      dropout: 0.2
+      lr: 0.00100909496698638
+  ridge:
+    type: ridge
+    alpha: 19.087762849193723
+    C: 0.009175910558479225
+  knn:
+    type: knn
+    n_neighbors: 11
+    weights: distance
+  voting:
+    type: voting
+    w_lgb: 0.3184828083629586
+    w_xgb: 0.29724407030170624
+    w_rf: 0.9829973169651043
+  dt:
+    type: dt
+    max_depth: 3
+    criterion: entropy
+    min_samples_split: 15
