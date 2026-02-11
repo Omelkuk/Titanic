@@ -18,9 +18,10 @@ def clean_data(df):
     df['IsAlone'] = (df['FamilySize'] == 1).astype(int)
     #палуба
     df["Deck"] = df["Cabin"].str.get(0).fillna("Unknown")
-
+    #one hot
     df = pd.get_dummies(df, columns=["Sex", "Embarked","Title", "Deck"], drop_first=True)
     cols_to_drop = ['PassengerId', 'Name', 'Ticket', 'Cabin', 'SibSp', 'Parch']
     df = df.drop(columns=cols_to_drop, errors='ignore')
     df = df.fillna(0)
+
     return df
