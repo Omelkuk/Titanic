@@ -1,0 +1,17 @@
+# Основные библиотеки для работы с данными
+pandas
+numpy
+
+# Визуализация
+matplotlib
+plotly
+
+# Машинное обучение и инструменты
+scikit-learn
+xgboost
+lightgbm
+optuna
+pyyaml
+
+# Работа с Jupyter Notebook (если будешь запускать там)
+ipykernel
