@@ -12,6 +12,7 @@ xgboost
 lightgbm
 optuna
 pyyaml
+pytorch
 
 # Работа с Jupyter Notebook (если будешь запускать там)
 ipykernel
